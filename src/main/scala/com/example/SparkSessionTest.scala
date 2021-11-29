@@ -41,5 +41,8 @@ object SparkSessionTest {
 
     val unionRDD = filteredRDD1.union(filteredRDD2)
     unionRDD.collect().foreach(println)
+
+    val pairRDD = rdd2.map(f => (f(1), f(2)))
+    pairRDD.collect().foreach(println)
   }
 }

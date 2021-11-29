@@ -33,5 +33,13 @@ object SparkSessionTest {
     rdd2.foreach(f=>{
       println(s"Col1: ${f(0)} ,Col2: ${f(1)} ,Col3: ${f(2)} ,Col4: ${f(3)}")
     })
+
+    val rdd3 = rddFromFile.flatMap(f => { f.split(",") })
+
+    val filteredRDD1 = rdd3.filter(x => x.startsWith("Nguyen"))
+    val filteredRDD2 = rdd3.filter(x => x.contains("Quynh"))
+
+    val unionRDD = filteredRDD1.union(filteredRDD2)
+    unionRDD.collect().foreach(println)
   }
 }
